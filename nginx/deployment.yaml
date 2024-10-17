@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-cip
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app-cip
+  template:
+    metadata:
+      labels:
+        app: my-app-cip
+    spec:
+      containers:
+      - name: my-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
