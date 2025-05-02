@@ -12,12 +12,29 @@
 #     protocol: TCP
 #   selector:
 #     app: my-app-np
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: netflix-svc
+#   labels:
+#     app: my-app-np
+# spec:
+#   type: ExternalName
+#   externalName: argocd.ashraf.cyou
+
+
 apiVersion: v1
 kind: Service
 metadata:
   name: netflix-svc
-  labels:
-    app: my-app-np
+  namespace: netflix-space
 spec:
-  type: ExternalName
-  externalName: argocd.ashraf.cyou
+  type: LoadBalancer
+  selector:
+    app: my-app-np
+  ports:
+  - port: 4000
+    targetPort: 4000
+    protocol: TCP
