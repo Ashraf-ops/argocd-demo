@@ -25,22 +25,21 @@ pipeline {
 
         stage('Init') {
             steps {
+                dir('terraform-gcp') {
                 sh '''
-                  cd terraform-gcp/
                   terraform init 
-                  terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"
                 '''
+            }
             }
         }
 
-        // stage('Plan') {
-        //     steps {
-        //         sh 'cd terraform-gcp/'
-        //         sh 'cd terraform-gcp/'
-        //         sh 'ls -la'
-        //         // sh 'terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
-        //     }
-        // }
+        stage('Plan') {
+            steps {
+                dir('terraform-gcp') {
+                sh 'terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+            }
+            }
+        }
 
         // stage('Apply') {
         //     steps {
