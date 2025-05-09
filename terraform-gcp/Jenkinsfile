@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        terraform 'terraform'  // Must match the name in tool config
+    }
+
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = credentials('GCP-Cloud') // Jenkins credential ID
     }
