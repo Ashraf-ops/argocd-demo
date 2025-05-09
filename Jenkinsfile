@@ -8,7 +8,11 @@ pipeline {
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = credentials('GCP-Cloud') // Jenkins credential ID
     }
-
+    
+    parameters {
+        choice(name: 'TERRAFORM_ACTION', choices: ['plan', 'validate'], description: 'Choose the Terraform action to perform')
+    }
+    
     stages {
 
         stage('Clone Repo') {
