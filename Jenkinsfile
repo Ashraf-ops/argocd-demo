@@ -74,5 +74,3 @@ pipeline {
         //         sh 'terraform apply -auto-approve -var="project_id=my-gcp-project" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
         //     }
         // }
-    }
-}
