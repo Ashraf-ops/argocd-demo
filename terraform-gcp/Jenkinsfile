@@ -19,8 +19,6 @@ pipeline {
 
         stage('Setup') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
                 sh 'terraform --version'
             }
         }
@@ -28,6 +26,7 @@ pipeline {
         stage('Init') {
             steps {
                 sh '''
+                  cd terraform-gcp/
                   terraform init 
                 '''
             }
