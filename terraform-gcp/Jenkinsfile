@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    environment {
+        GOOGLE_APPLICATION_CREDENTIALS = credentials('GCP-Cloud') // Jenkins credential ID
+    }
+
+    stages {
+        stage('Setup') {
+            steps {
+                sh 'terraform --version'
+                sh 'gcloud --version'
+            }
+        }
+
+        stage('Init') {
+            steps {
+                sh '''
+                  terraform init 
+                '''
+            }
+        }
+
+        stage('Plan') {
+            steps {
+                sh 'terraform plan -var="project_id=tonal-edge-458514-a3" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+            }
+        }
+
+        // stage('Apply') {
+        //     steps {
+        //         sh 'terraform apply -auto-approve -var="project_id=my-gcp-project" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+        //     }
+        // }
+    }
+}
