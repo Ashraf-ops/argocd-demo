@@ -38,7 +38,7 @@ pipeline {
         //         sh 'cd terraform-gcp/'
         //         sh 'cd terraform-gcp/'
         //         sh 'ls -la'
-        //         // sh 'terraform plan -var="project_id=tonal-edge-458514-a3" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+        //         // sh 'terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
         //     }
         // }
 
