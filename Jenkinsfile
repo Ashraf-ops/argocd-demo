@@ -36,22 +36,38 @@ pipeline {
             }
             }
         }
-
-        stage('Validate') {
+        
+        stage('Terraform Action') {
             steps {
                 dir('terraform-gcp') {
-                sh 'terraform validate'
-            }
+                    script {
+                        if (params.TERRAFORM_ACTION == 'plan') {
+                            sh 'terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+                        } else if (params.TERRAFORM_ACTION == 'validate') {
+                            sh 'terraform validate'
+                        }
+                    }
+                }
             }
         }
+    }
+}
 
-        stage('Plan') {
-            steps {
-                dir('terraform-gcp') {
-                sh 'terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
-            }
-            }
-        }
+        // stage('Validate') {
+        //     steps {
+        //         dir('terraform-gcp') {
+        //         sh 'terraform validate'
+        //     }
+        //     }
+        // }
+
+        // stage('Plan') {
+        //     steps {
+        //         dir('terraform-gcp') {
+        //         sh 'terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+        //     }
+        //     }
+        // }
 
         // stage('Apply') {
         //     steps {
