@@ -12,7 +12,7 @@ pipeline {
     parameters {
         choice(name: 'TERRAFORM_ACTION', choices: ['plan', 'validate'], description: 'Choose the Terraform action to perform')
     }
-    
+
     stages {
 
         stage('Clone Repo') {
@@ -33,6 +33,14 @@ pipeline {
                 sh '''
                   terraform init 
                 '''
+            }
+            }
+        }
+
+        stage('Validate') {
+            steps {
+                dir('terraform-gcp') {
+                sh 'terraform validate'
             }
             }
         }
