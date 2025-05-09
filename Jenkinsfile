@@ -28,7 +28,7 @@ pipeline {
                 sh '''
                   cd terraform-gcp/
                   terraform init 
-                  terraform plan -var="project_id=tonal-edge-458514-a3" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"
+                  terraform plan -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"
                 '''
             }
         }
