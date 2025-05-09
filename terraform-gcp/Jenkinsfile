@@ -13,7 +13,6 @@ pipeline {
         stage('Setup') {
             steps {
                 sh 'terraform --version'
-                sh 'gcloud --version'
             }
         }
 
