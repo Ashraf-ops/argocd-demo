@@ -10,7 +10,7 @@ pipeline {
     }
 
     stages {
-        stages {
+
         stage('Clone Repo') {
             steps {
                 git credentialsId: 'GitHub-Credentials', url: 'https://github.com/Ashraf-ops/argocd-demo.git', branch: 'main'
