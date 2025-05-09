@@ -34,8 +34,8 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'cd terraform-gcp/'
-                sh 'terraform plan -var="project_id=tonal-edge-458514-a3" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
+                sh 'ls -la'
+                // sh 'terraform plan -var="project_id=tonal-edge-458514-a3" -var="credentials_file=${GOOGLE_APPLICATION_CREDENTIALS}"'
             }
         }
 
